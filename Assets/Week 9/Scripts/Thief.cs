@@ -1,29 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class Thief : Villager
 {
-    public GameObject DaggerPrefab;
-    public Transform spawnPoint;
+    public GameObject knifePrefab;
+    public Transform spawnPoint1;
+    public Transform spawnPoint2;
+    public float dashTime = 2;
+    float dashSpeed = 7;
+    Coroutine dashing;
+    
+    protected override void Attack()
+    {
+        if (dashing != null)
+        {
+            StopCoroutine(dashing);
+        }
+        dashing = StartCoroutine(Dash());
+
+        
+    }
+    IEnumerator Dash()
+    {
+        //dash towards mouse
+        destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        speed = dashSpeed;
+
+        while (speed > 3)
+        {
+            yield return null;
+        }
+
+        base.Attack();
+        yield return new WaitForSeconds(0.2f);
+        Instantiate(knifePrefab, spawnPoint1.position, spawnPoint1.rotation);
+        yield return new WaitForSeconds(0.3f);
+        Instantiate(knifePrefab, spawnPoint2.position, spawnPoint2.rotation);
+        
+    }
     public override ChestType CanOpen()
     {
         return ChestType.Thief;
     }
-
-    protected override void Attack()
+    public override string ToString()
     {
-        speed = 6;
-        destination = transform.position;
-        base.Attack();
-        Invoke("spawnDagger", 0.2f);
-        Invoke("spawnDagger", 0.4f);
-        //did two so it kinda matches the animation :D
-        destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    }
-    void spawnDagger()
-    {
-        Instantiate(DaggerPrefab, spawnPoint.position, spawnPoint.rotation);
+        return "Thief (Real)";
     }
 }
