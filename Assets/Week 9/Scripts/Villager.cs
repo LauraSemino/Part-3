@@ -31,8 +31,8 @@ public class Villager : MonoBehaviour
 
     private void OnMouseDown()
     {
-        CharacterControl.SetSelectedVillager(this);
-        clickingOnSelf = true;
+       //CharacterControl.SetSelectedVillager(this);
+       //clickingOnSelf = true;
     }
 
     private void OnMouseUp()
