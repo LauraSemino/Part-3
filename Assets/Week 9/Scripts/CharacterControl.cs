@@ -15,6 +15,8 @@ public class CharacterControl : MonoBehaviour
     public Villager Merchant;
     public Villager Thief;
 
+    
+
     private void Start()
     {
         Instance = this;
@@ -44,6 +46,13 @@ public class CharacterControl : MonoBehaviour
         if (value == 2)
         {
             SetSelectedVillager(Thief);
+        }
+    }
+    public void SizeSelection(Single value)
+    {
+        if (SelectedVillager != null)
+        {
+            SelectedVillager.scalevalue = value;
         }
     }
 
