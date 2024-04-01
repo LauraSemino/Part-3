@@ -10,6 +10,7 @@ public class Cursor : MonoBehaviour
     public float cursormove;
     public float menu;
     
+    
     Rigidbody2D rb;
     void Start()
     {
@@ -25,8 +26,14 @@ public class Cursor : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && selection != 0)
         {
-            selection -= 1;
-            
+            if (selection == 5 && menu == 1)
+            {
+                selection -= 2;
+            }
+            else
+            {
+                selection -= 1;
+            }
         }
         if (Input.GetKeyDown(KeyCode.DownArrow) && (selection < 8 && menu == 0))
         {
@@ -35,9 +42,16 @@ public class Cursor : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.DownArrow) && (selection < 5 && menu == 1))
         {
-            selection += 1;
-
+            if (selection == 3)
+            {
+                selection += 2;
+            }
+            else
+            {
+                selection += 1;
+            }
         }
+
 
         //switching between inventory and storage
         if (Input.GetKeyDown(KeyCode.RightArrow) && menu == 0)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,13 +13,15 @@ public class DummyItem : MonoBehaviour
     public bool isSelected;
     protected Vector2 pos;
     public SpriteRenderer cursorColor;
+    public bool isEquipped = false;
+    
     
 
     // Start is called before the first frame update
     void Start()
     {
-        inventorySlot = 0;
-        menuSlot = 0;
+        //inventorySlot = 0;
+        //menuSlot = 0;
         isSelected = false;
         cursorColor.color = Color.white;
     }
@@ -26,6 +29,8 @@ public class DummyItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //lets items be moved
         pos = transform.position;
 
         if (cursor.selection == inventorySlot && Input.GetKeyDown(KeyCode.Z) && cursor.menu == menuSlot)
@@ -54,12 +59,16 @@ public class DummyItem : MonoBehaviour
         {
             cursorColor.color = Color.white;
         }
-       
-
         transform.position = pos;
+
+        if (inventorySlot == 5 && menuSlot == 1)
+        {
+            isEquipped = true;
+        }
     }
     void lastItemPosition()
     {
+        //sends a item back to where you grabbed it from
         pos.y = -inventorySlot + 3.75f;
         if (menuSlot == 0)
         {
