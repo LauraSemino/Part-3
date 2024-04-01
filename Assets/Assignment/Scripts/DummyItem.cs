@@ -11,6 +11,8 @@ public class DummyItem : MonoBehaviour
     public Cursor cursor;
     public bool isSelected;
     protected Vector2 pos;
+    public SpriteRenderer cursorColor;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -18,13 +20,13 @@ public class DummyItem : MonoBehaviour
         inventorySlot = 0;
         menuSlot = 0;
         isSelected = false;
+        cursorColor.color = Color.white;
     }
 
     // Update is called once per frame
     void Update()
     {
         pos = transform.position;
-        
 
         if (cursor.selection == inventorySlot && Input.GetKeyDown(KeyCode.Z) && cursor.menu == menuSlot)
         {
@@ -34,6 +36,8 @@ public class DummyItem : MonoBehaviour
         {
             pos.x = cursor.transform.position.x + 2;
             pos.y = cursor.transform.position.y;
+            cursorColor.color = Color.yellow;
+            
         }
         if(isSelected == true && Input.GetKeyDown(KeyCode.Z) && (cursor.selection != inventorySlot || cursor.menu != menuSlot))
         {
@@ -46,6 +50,11 @@ public class DummyItem : MonoBehaviour
             isSelected = false;
             lastItemPosition();
         }
+        if (isSelected == false)
+        {
+            cursorColor.color = Color.white;
+        }
+       
 
         transform.position = pos;
     }
