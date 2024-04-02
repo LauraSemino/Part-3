@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,7 +13,8 @@ public class Cursor : MonoBehaviour
     public Vector2 pos;
     public InventoryManager inventory;
     public List<Vector2> occupiedslots;
-    
+    public TextMeshProUGUI ItemDesc;
+
     Rigidbody2D rb;
     void Start()
     {
@@ -110,6 +112,7 @@ public class Cursor : MonoBehaviour
     public void isWeapon(DummyItem item)
     {
         Debug.Log(item);
+        ItemDesc.text = item.description;
         StartCoroutine(inventory.LoadDesc());
     }
 

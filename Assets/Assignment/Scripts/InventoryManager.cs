@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Search;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class InventoryManager : MonoBehaviour
     public Cursor cursor;
     public Transform descbox;
     public Vector2 pos;
+    
 
 
     float speed = 0.1f;
@@ -23,6 +25,7 @@ public class InventoryManager : MonoBehaviour
     void Update()
     {
        pos = descbox.position;
+       
        
     }
     public IEnumerator LoadDesc()

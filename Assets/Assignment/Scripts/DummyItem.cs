@@ -14,6 +14,7 @@ public class DummyItem : MonoBehaviour
     protected Vector2 pos;
     public SpriteRenderer cursorColor;
     public bool isEquipped = false;
+    public string description;
     
     
 
@@ -26,6 +27,8 @@ public class DummyItem : MonoBehaviour
         cursorColor.color = Color.white;
         pos = transform.position;
         cursor.Occupied(this.pos);
+
+        description = "No Effect";
     }
 
     // Update is called once per frame
@@ -65,7 +68,6 @@ public class DummyItem : MonoBehaviour
             pos.x = cursor.transform.position.x + 2;
             pos.y = cursor.transform.position.y;
             cursorColor.color = Color.yellow;
-
 
         }
 
