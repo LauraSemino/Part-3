@@ -33,6 +33,7 @@ public class Cursor : MonoBehaviour
                 selection -= 2;
             }
             else
+
             {
                 selection -= 1;
             }
@@ -93,15 +94,23 @@ public class Cursor : MonoBehaviour
     }
     public void UnOccupied (Vector2 itempos)
     {
+        
+        if(itempos.x == 0.65f && itempos.y == -1.25f)
+        {
+            StartCoroutine(inventory.UnLoadDesc());
+        }
         occupiedslots.Remove(itempos);
     }
     public void isEquipped(DummyItem item)
     {
         Debug.Log(item);
+        //change description text
+        
     }
     public void isWeapon(DummyItem item)
     {
         Debug.Log(item);
+        StartCoroutine(inventory.LoadDesc());
     }
 
     public bool OccupiedListCheck()
@@ -114,7 +123,10 @@ public class Cursor : MonoBehaviour
                return (true);
 
             }
+
         }
+        
         return (false);
     }
+
 }

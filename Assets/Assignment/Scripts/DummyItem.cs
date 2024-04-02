@@ -38,7 +38,8 @@ public class DummyItem : MonoBehaviour
         if (cursor.selection == inventorySlot && Input.GetKeyDown(KeyCode.Z) && cursor.menu == menuSlot)
         {
             isSelected = true;
-            cursor.UnOccupied(this.pos);
+            cursor.UnOccupied(pos);
+            
         }
 
         if (isSelected == true && Input.GetKeyDown(KeyCode.Z) && (cursor.selection != inventorySlot || cursor.menu != menuSlot) && cursor.OccupiedListCheck() == false)
@@ -75,6 +76,10 @@ public class DummyItem : MonoBehaviour
         {
             isSelected = false;
             lastItemPosition();
+            if(pos.x == 0.65f && pos.y == -1.25f)
+            {
+                cursor.isWeapon(this);
+            }
             cursor.Occupied(this.pos);
         }
         if (isSelected == false)
