@@ -24,6 +24,7 @@ public class DummyItem : MonoBehaviour
         //menuSlot = 0;
         isSelected = false;
         cursorColor.color = Color.white;
+        cursor.Occupied(this.pos);
     }
 
     // Update is called once per frame
@@ -36,6 +37,7 @@ public class DummyItem : MonoBehaviour
         if (cursor.selection == inventorySlot && Input.GetKeyDown(KeyCode.Z) && cursor.menu == menuSlot)
         {
             isSelected = true;
+            cursor.UnOccupied(this.pos);
         }
         if (isSelected == true )
         {
@@ -43,17 +45,29 @@ public class DummyItem : MonoBehaviour
             pos.y = cursor.transform.position.y;
             cursorColor.color = Color.yellow;
             
+
         }
         if(isSelected == true && Input.GetKeyDown(KeyCode.Z) && (cursor.selection != inventorySlot || cursor.menu != menuSlot))
         {
            isSelected = false;
            inventorySlot = cursor.selection;
            menuSlot = cursor.menu;
+           cursor.Occupied(this.pos);
+           if(inventorySlot == 5 && menuSlot == 1)
+           {
+                cursor.isWeapon(this);
+           }
+            if (inventorySlot < 4 && menuSlot == 1)
+            {
+                cursor.isEquipped(this);
+            }
+
         }
         if (isSelected == true && Input.GetKeyDown(KeyCode.X))
         {
             isSelected = false;
             lastItemPosition();
+            cursor.Occupied(this.pos);
         }
         if (isSelected == false)
         {
@@ -80,4 +94,5 @@ public class DummyItem : MonoBehaviour
         }
         
     }
+    
 }

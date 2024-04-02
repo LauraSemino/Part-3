@@ -9,7 +9,8 @@ public class Cursor : MonoBehaviour
     public float selection;
     public float cursormove;
     public float menu;
-    
+    public InventoryManager inventory;
+    public List<Vector2> occupiedslots;
     
     Rigidbody2D rb;
     void Start()
@@ -84,5 +85,21 @@ public class Cursor : MonoBehaviour
     {
         
     }
-
+    public void Occupied(Vector2 itempos)
+    {
+        Debug.Log(itempos);
+        occupiedslots.Add(itempos);
+    }
+    public void UnOccupied (Vector2 itempos)
+    {
+        occupiedslots.Remove(itempos);
+    }
+    public void isEquipped(DummyItem item)
+    {
+        Debug.Log(item);
+    }
+    public void isWeapon(DummyItem item)
+    {
+        Debug.Log(item);
+    }
 }
