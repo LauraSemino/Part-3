@@ -16,10 +16,12 @@ public class Cursor : MonoBehaviour
     public TextMeshProUGUI ItemDesc;
 
     Rigidbody2D rb;
+    SpriteRenderer sr;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+        sr = GetComponent<SpriteRenderer>();
+        sr.color = Color.white;
     }
 
     // Update is called once per frame
@@ -82,8 +84,15 @@ public class Cursor : MonoBehaviour
         pos.y = -selection + 3.75f; 
         transform.position = pos;
 
-       
-       
+       //add other items
+       if (DummyItem.anySelected == true)
+       {
+            sr.color = Color.yellow;
+       }
+       else
+        {
+            sr.color = Color.white;
+        }
     }
     private void FixedUpdate()
     {

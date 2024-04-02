@@ -11,6 +11,7 @@ public class DummyItem : MonoBehaviour
     public float menuSlot;
     public Cursor cursor;
     public bool isSelected;
+    public static bool anySelected;
     protected Vector2 pos;
     public SpriteRenderer cursorColor;
     public bool isEquipped = false;
@@ -24,7 +25,7 @@ public class DummyItem : MonoBehaviour
         //inventorySlot = 0;
         //menuSlot = 0;
         isSelected = false;
-        cursorColor.color = Color.white;
+        
         pos = transform.position;
         cursor.Occupied(this.pos);
 
@@ -41,6 +42,7 @@ public class DummyItem : MonoBehaviour
         if (cursor.selection == inventorySlot && Input.GetKeyDown(KeyCode.Z) && cursor.menu == menuSlot)
         {
             isSelected = true;
+            anySelected = true;
             cursor.UnOccupied(pos);
             
         }
@@ -48,6 +50,7 @@ public class DummyItem : MonoBehaviour
         if (isSelected == true && Input.GetKeyDown(KeyCode.Z) && (cursor.selection != inventorySlot || cursor.menu != menuSlot) && cursor.OccupiedListCheck() == false)
         {
             isSelected = false;
+            anySelected = false;
             inventorySlot = cursor.selection;
             menuSlot = cursor.menu;
             cursor.Occupied(this.pos);
@@ -67,7 +70,7 @@ public class DummyItem : MonoBehaviour
         {
             pos.x = cursor.transform.position.x + 2;
             pos.y = cursor.transform.position.y;
-            cursorColor.color = Color.yellow;
+            
 
         }
 
@@ -76,6 +79,7 @@ public class DummyItem : MonoBehaviour
         
         if (isSelected == true && Input.GetKeyDown(KeyCode.X))
         {
+            anySelected = false;
             isSelected = false;
             lastItemPosition();
             if(pos.x == 0.65f && pos.y == -1.25f)
@@ -84,10 +88,7 @@ public class DummyItem : MonoBehaviour
             }
             cursor.Occupied(this.pos);
         }
-        if (isSelected == false)
-        {
-            cursorColor.color = Color.white;
-        }
+        
         transform.position = pos;
 
         if (inventorySlot == 5 && menuSlot == 1)
