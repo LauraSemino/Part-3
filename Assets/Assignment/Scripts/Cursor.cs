@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Cursor : MonoBehaviour
 {
@@ -13,7 +14,17 @@ public class Cursor : MonoBehaviour
     public Vector2 pos;
     public InventoryManager inventory;
     public List<Vector2> occupiedslots;
+
+    //stats
     public TextMeshProUGUI ItemDesc;
+    public TextMeshProUGUI ItemATK;
+    public TextMeshProUGUI ItemMAG;
+    public TextMeshProUGUI ItemDEF;
+    public TextMeshProUGUI ItemRES;
+    public TextMeshProUGUI ItemSPD;
+    public TextMeshProUGUI ItemCRIT;
+    public TextMeshProUGUI ItemEVA;
+
 
     Rigidbody2D rb;
     SpriteRenderer sr;
@@ -108,6 +119,14 @@ public class Cursor : MonoBehaviour
         
         if(itempos.x == 0.65f && itempos.y == -1.25f)
         {
+            ItemDesc.text = "10";
+            ItemATK.text = "10";
+            ItemMAG.text = "10";
+            ItemDEF.text = "10";
+            ItemRES.text = "10";
+            ItemSPD.text = "10";
+            ItemCRIT.text = "10";
+            ItemEVA.text = "10";
             StartCoroutine(inventory.UnLoadDesc());
         }
         occupiedslots.Remove(itempos);
@@ -122,6 +141,16 @@ public class Cursor : MonoBehaviour
     {
         Debug.Log(item);
         ItemDesc.text = item.description;
+        ItemATK.text = item.atk.ToString();
+        ItemMAG.text = item.mag.ToString();
+        ItemDEF.text = item.def.ToString();
+        ItemRES.text = item.res.ToString();
+        ItemSPD.text = item.spd.ToString();
+        ItemCRIT.text = item.crit.ToString();
+        ItemEVA.text = item.eva.ToString();
+        
+
+
         StartCoroutine(inventory.LoadDesc());
     }
 

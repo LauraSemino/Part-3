@@ -13,9 +13,18 @@ public class DummyItem : MonoBehaviour
     public bool isSelected;
     public static bool anySelected;
     protected Vector2 pos;
-    public SpriteRenderer cursorColor;
+    
     public bool isEquipped = false;
+
+    //stats
     public string description;
+    public float atk;
+    public float mag;
+    public float def;
+    public float res;
+    public float spd;
+    public float crit;
+    public float eva;
     
     
 
@@ -29,7 +38,8 @@ public class DummyItem : MonoBehaviour
         pos = transform.position;
         cursor.Occupied(this.pos);
 
-        description = "No Effect";
+        stats();
+        
     }
 
     // Update is called once per frame
@@ -110,5 +120,15 @@ public class DummyItem : MonoBehaviour
         }
         
     }
-    
+    protected virtual void stats()
+    {
+        description = "No Effect";
+        atk = 10;
+        mag = 10;
+        def = 10;
+        res = 10;
+        spd = 10;
+        crit = 10;
+        eva = 10;
+    }
 }

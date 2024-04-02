@@ -148,7 +148,6 @@ GameObject:
   - component: {fileID: 7044018308062311979}
   - component: {fileID: 7595747117373308682}
   - component: {fileID: 3754522458236502350}
-  - component: {fileID: 3871748858165566784}
   m_Layer: 5
   m_Name: ItemManagerDummy
   m_TagString: Untagged
@@ -239,20 +238,3 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3871748858165566784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7180697668298049161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1a50ae706f86274ca0aacc401b67896, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventorySlot: 0
-  menuSlot: 0
-  cursor: {fileID: 0}
-  isSelected: 0
-  cursorColor: {fileID: 0}
