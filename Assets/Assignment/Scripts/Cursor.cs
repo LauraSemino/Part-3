@@ -9,6 +9,7 @@ public class Cursor : MonoBehaviour
     public float selection;
     public float cursormove;
     public float menu;
+    public Vector2 pos;
     public InventoryManager inventory;
     public List<Vector2> occupiedslots;
     
@@ -23,7 +24,7 @@ public class Cursor : MonoBehaviour
     void Update()
     {
         //up and down menu movement
-        Vector2 pos = transform.position;
+        pos = transform.position;
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && selection != 0)
         {
@@ -101,5 +102,19 @@ public class Cursor : MonoBehaviour
     public void isWeapon(DummyItem item)
     {
         Debug.Log(item);
+    }
+
+    public bool OccupiedListCheck()
+    {
+        for (int i = 0; i < occupiedslots.Count; i++)
+        {
+            Debug.Log(occupiedslots.Count);
+            if(pos.x + 2 == occupiedslots[i].x && pos.y == occupiedslots[i].y)
+            {
+               return (true);
+
+            }
+        }
+        return (false);
     }
 }

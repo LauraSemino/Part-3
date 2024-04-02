@@ -24,6 +24,7 @@ public class DummyItem : MonoBehaviour
         //menuSlot = 0;
         isSelected = false;
         cursorColor.color = Color.white;
+        pos = transform.position;
         cursor.Occupied(this.pos);
     }
 
@@ -39,30 +40,37 @@ public class DummyItem : MonoBehaviour
             isSelected = true;
             cursor.UnOccupied(this.pos);
         }
-        if (isSelected == true )
-        {
-            pos.x = cursor.transform.position.x + 2;
-            pos.y = cursor.transform.position.y;
-            cursorColor.color = Color.yellow;
-            
 
-        }
-        if(isSelected == true && Input.GetKeyDown(KeyCode.Z) && (cursor.selection != inventorySlot || cursor.menu != menuSlot))
+        if (isSelected == true && Input.GetKeyDown(KeyCode.Z) && (cursor.selection != inventorySlot || cursor.menu != menuSlot) && cursor.OccupiedListCheck() == false)
         {
-           isSelected = false;
-           inventorySlot = cursor.selection;
-           menuSlot = cursor.menu;
-           cursor.Occupied(this.pos);
-           if(inventorySlot == 5 && menuSlot == 1)
-           {
+            isSelected = false;
+            inventorySlot = cursor.selection;
+            menuSlot = cursor.menu;
+            cursor.Occupied(this.pos);
+            if (inventorySlot == 5 && menuSlot == 1)
+            {
                 cursor.isWeapon(this);
-           }
+            }
             if (inventorySlot < 4 && menuSlot == 1)
             {
                 cursor.isEquipped(this);
             }
 
         }
+
+
+        if (isSelected == true)
+        {
+            pos.x = cursor.transform.position.x + 2;
+            pos.y = cursor.transform.position.y;
+            cursorColor.color = Color.yellow;
+
+
+        }
+
+        
+        
+        
         if (isSelected == true && Input.GetKeyDown(KeyCode.X))
         {
             isSelected = false;
