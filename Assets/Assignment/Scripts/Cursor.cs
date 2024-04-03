@@ -14,8 +14,9 @@ public class Cursor : MonoBehaviour
     public Vector2 pos;
     public InventoryManager inventory;
     public List<Vector2> occupiedslots;
+    public List<Vector2> occupiedinventory;
 
-    //stats
+    //stats ref
     public TextMeshProUGUI ItemDesc;
     public TextMeshProUGUI ItemATK;
     public TextMeshProUGUI ItemMAG;
@@ -25,6 +26,15 @@ public class Cursor : MonoBehaviour
     public TextMeshProUGUI ItemCRIT;
     public TextMeshProUGUI ItemEVA;
 
+    //player stats
+    public static float atk;
+    public static float mag;
+    public static float def;
+    public static float res;
+    public static float spd;
+    public static float crit;
+    public static float eva;
+
 
     Rigidbody2D rb;
     SpriteRenderer sr;
@@ -33,14 +43,40 @@ public class Cursor : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         sr.color = Color.white;
+
+        atk = 10;
+        mag = 10;
+        def = 10;
+        res = 10;
+        spd = 10;
+        crit = 10;
+        eva = 10;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //up and down menu movement
+        
         pos = transform.position;
 
+        //stat updates based on inventory
+        if(occupiedslots.Count == 3)
+        {
+            spd = 9;
+        }
+        if (occupiedslots.Count == 4)
+        {
+            spd = 8;
+            eva = 9;
+        }
+        if (occupiedslots.Count == 5)
+        {
+            spd = 7;
+            eva = 8;
+        }
+
+
+        //up and down menu movement
         if (Input.GetKeyDown(KeyCode.UpArrow) && selection != 0)
         {
             if (selection == 5 && menu == 1)
@@ -113,41 +149,49 @@ public class Cursor : MonoBehaviour
     {
         Debug.Log(itempos);
         occupiedslots.Add(itempos);
+        if(itempos.x == 0.65f)
+        {
+            occupiedinventory.Add(itempos);
+        }
     }
     public void UnOccupied (Vector2 itempos)
     {
         
         if(itempos.x == 0.65f && itempos.y == -1.25f)
         {
-            ItemDesc.text = "10";
-            ItemATK.text = "10";
-            ItemMAG.text = "10";
-            ItemDEF.text = "10";
-            ItemRES.text = "10";
-            ItemSPD.text = "10";
-            ItemCRIT.text = "10";
-            ItemEVA.text = "10";
+            
+            ItemATK.text = atk.ToString();
+            ItemMAG.text = mag.ToString();
+            ItemDEF.text = def.ToString();
+            ItemRES.text = res.ToString();
+            ItemSPD.text = spd.ToString();
+            ItemCRIT.text = crit.ToString();
+            ItemEVA.text = eva.ToString();
             StartCoroutine(inventory.UnLoadDesc());
+        }
+        if (itempos.x == 0.65f)
+        {
+            occupiedinventory.Remove(itempos);
         }
         occupiedslots.Remove(itempos);
     }
     public void isEquipped(DummyItem item)
     {
         Debug.Log(item);
-        //change description text
+        
         
     }
     public void isWeapon(DummyItem item)
     {
         Debug.Log(item);
         ItemDesc.text = item.description;
-        ItemATK.text = item.atk.ToString();
-        ItemMAG.text = item.mag.ToString();
-        ItemDEF.text = item.def.ToString();
-        ItemRES.text = item.res.ToString();
-        ItemSPD.text = item.spd.ToString();
-        ItemCRIT.text = item.crit.ToString();
-        ItemEVA.text = item.eva.ToString();
+        ItemATK.text = (item.atk + atk).ToString();
+        ItemMAG.text = (item.mag + mag).ToString();
+        ItemDEF.text = (item.def + def).ToString();
+        ItemRES.text = (item.res + res).ToString();
+        ItemSPD.text = (item.spd + spd).ToString();
+        ItemCRIT.text = (item.crit + crit).ToString();
+        ItemEVA.text = (item.eva + eva).ToString();
         
 
 

@@ -9,13 +9,13 @@ public class IronSword : DummyItem
    protected override void stats()
     {
         description = "+2 Atk, +1 Def";
-        atk = 12;
-        mag = 10;
-        def = 11;
-        res = 10;
-        spd = 10;
-        crit = 10;
-        eva = 10;
+        atk = 2;
+        mag = 0;
+        def = 1;
+        res = 0;
+        spd = 0;
+        crit = 0;
+        eva = 0;
 
     }
 

@@ -123,12 +123,12 @@ public class DummyItem : MonoBehaviour
     protected virtual void stats()
     {
         description = "No Effect";
-        atk = 10;
-        mag = 10;
-        def = 10;
-        res = 10;
-        spd = 10;
-        crit = 10;
-        eva = 10;
+        atk = 0;
+        mag = 0;
+        def = 0;
+        res = 0;
+        spd = 0;
+        crit = 0;
+        eva = 0;
     }
 }
