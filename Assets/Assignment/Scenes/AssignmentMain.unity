@@ -1336,6 +1336,7 @@ MonoBehaviour:
   pos: {x: 0, y: 0}
   inventory: {fileID: 80532483}
   occupiedslots: []
+  occupiedinventory: []
   ItemDesc: {fileID: 520064427}
   ItemATK: {fileID: 1610153747}
   ItemMAG: {fileID: 2132730437}
@@ -3092,7 +3093,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1771881af22a16540b0d5f5394cdf08e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3113,7 +3114,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.3744, y: -3.5432, z: 0}
-  m_LocalScale: {x: 2.1311, y: 2.1464, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
