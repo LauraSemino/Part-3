@@ -60,16 +60,16 @@ public class Cursor : MonoBehaviour
         pos = transform.position;
 
         //stat updates based on inventory
-        if(occupiedslots.Count == 3)
+        if(occupiedinventory.Count == 3)
         {
             spd = 9;
         }
-        if (occupiedslots.Count == 4)
+        if (occupiedinventory.Count == 4)
         {
             spd = 8;
             eva = 9;
         }
-        if (occupiedslots.Count == 5)
+        if (occupiedinventory.Count == 5)
         {
             spd = 7;
             eva = 8;

@@ -57,23 +57,8 @@ public class DummyItem : MonoBehaviour
             
         }
 
-        if (isSelected == true && Input.GetKeyDown(KeyCode.Z) && (cursor.selection != inventorySlot || cursor.menu != menuSlot) && cursor.OccupiedListCheck() == false)
-        {
-            isSelected = false;
-            anySelected = false;
-            inventorySlot = cursor.selection;
-            menuSlot = cursor.menu;
-            cursor.Occupied(this.pos);
-            if (inventorySlot == 5 && menuSlot == 1)
-            {
-                cursor.isWeapon(this);
-            }
-            if (inventorySlot < 4 && menuSlot == 1)
-            {
-                cursor.isEquipped(this);
-            }
+        BecomeWeapon();
 
-        }
 
 
         if (isSelected == true)
@@ -101,12 +86,9 @@ public class DummyItem : MonoBehaviour
         
         transform.position = pos;
 
-        if (inventorySlot == 5 && menuSlot == 1)
-        {
-            isEquipped = true;
-        }
+        
     }
-    void lastItemPosition()
+    protected void lastItemPosition()
     {
         //sends a item back to where you grabbed it from
         pos.y = -inventorySlot + 3.75f;
@@ -130,5 +112,33 @@ public class DummyItem : MonoBehaviour
         spd = 0;
         crit = 0;
         eva = 0;
+    }
+
+    protected virtual void BecomeWeapon()
+    {
+
+        if (isSelected == true && Input.GetKeyDown(KeyCode.Z) && (cursor.selection != inventorySlot || cursor.menu != menuSlot) && cursor.OccupiedListCheck() == false)
+        {
+            isSelected = false;
+            anySelected = false;
+            inventorySlot = cursor.selection;
+            menuSlot = cursor.menu;
+            cursor.Occupied(this.pos);
+            if (inventorySlot == 5 && menuSlot == 1)
+            {
+                cursor.isWeapon(this);
+            }
+            if (inventorySlot < 4 && menuSlot == 1)
+            {
+                cursor.isEquipped(this);
+            }
+
+        }
+
+        if (inventorySlot == 5 && menuSlot == 1)
+        {
+            isEquipped = true;
+
+        }
     }
 }
