@@ -147,12 +147,13 @@ public class Cursor : MonoBehaviour
     }
     public void Occupied(Vector2 itempos)
     {
-        Debug.Log(itempos);
-        occupiedslots.Add(itempos);
-        if(itempos.x == 0.65f)
+        if (itempos.x == 0.65f)
         {
             occupiedinventory.Add(itempos);
         }
+        Debug.Log(itempos);
+        occupiedslots.Add(itempos);
+        
     }
     public void UnOccupied (Vector2 itempos)
     {
@@ -178,8 +179,7 @@ public class Cursor : MonoBehaviour
     public void isEquipped(DummyItem item)
     {
         Debug.Log(item);
-        
-        
+
     }
     public void isWeapon(DummyItem item)
     {
@@ -192,7 +192,7 @@ public class Cursor : MonoBehaviour
         ItemSPD.text = (item.spd + spd).ToString();
         ItemCRIT.text = (item.crit + crit).ToString();
         ItemEVA.text = (item.eva + eva).ToString();
-        
+
 
 
         StartCoroutine(inventory.LoadDesc());

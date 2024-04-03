@@ -80,8 +80,14 @@ public class DummyItem : MonoBehaviour
             if(pos.x == 0.65f && pos.y == -1.25f)
             {
                 cursor.isWeapon(this);
+                cursor.Occupied(pos);
             }
-            cursor.Occupied(this.pos);
+            else
+            {
+                cursor.Occupied(pos);
+            }
+            
+
         }
         
         transform.position = pos;
@@ -123,10 +129,11 @@ public class DummyItem : MonoBehaviour
             anySelected = false;
             inventorySlot = cursor.selection;
             menuSlot = cursor.menu;
-            cursor.Occupied(this.pos);
+            cursor.Occupied(pos);
             if (inventorySlot == 5 && menuSlot == 1)
             {
                 cursor.isWeapon(this);
+
             }
             if (inventorySlot < 4 && menuSlot == 1)
             {
